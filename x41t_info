@@ -1,0 +1,10 @@
+set -x
+
+
+detect_hardware()
+{
+
+	FB0DEV=i915
+	WIFDEV=ipw2200
+}
+

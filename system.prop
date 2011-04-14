@@ -1,0 +1,6 @@
+# system.prop for viewpad10
+ro.sf.lcd_density=160
+ro.sf.install_non_market_apps=1
+keyguard.no_require_sim=1
+wifi.supplicant_scan_interval=120
+# end system.prop for viewpad10
