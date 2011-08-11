@@ -2,3 +2,4 @@ on boot
     chown system system /sys/class/backlight/thinkpad_screen/brightness
 
 service wacom-input /system/xbin/wacom-input
+
