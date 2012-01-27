@@ -1,0 +1,8 @@
+on boot
+    chown system system /sys/class/backlight/thinkpad_screen/brightness
+
+service wacom-input /system/bin/wacom-input
+    disabled
+
+on property:dev.bootcomplete=1
+    start wacom-input

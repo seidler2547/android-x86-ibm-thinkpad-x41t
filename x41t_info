@@ -1,0 +1,6 @@
+set -x
+
+detect_hardware()
+{
+	return 1
+}
