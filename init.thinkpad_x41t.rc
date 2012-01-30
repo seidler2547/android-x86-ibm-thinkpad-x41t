@@ -4,5 +4,15 @@ on boot
 service wacom-input /system/bin/wacom-input
     disabled
 
+service amixer-master /system/bin/alsa_amixer set Master 100 on
+    oneshot
+    disabled
+
+service amixer-pcm /system/bin/alsa_amixer set PCM 100 on
+    oneshot
+    disabled
+
 on property:dev.bootcomplete=1
     start wacom-input
+    start amixer-master
+    start amixer-pcm

@@ -2,5 +2,7 @@ set -x
 
 detect_hardware()
 {
+	modprobe hdaps || true
+	modprobe mmc_block || true
 	return 1
 }
