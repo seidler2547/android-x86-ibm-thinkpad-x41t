@@ -39,8 +39,9 @@ static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
 static int max_brightness = 255;
 static char brightness_file[PROPERTY_VALUE_MAX] = {'\0'};
 
-char const*const LLP_BRIGHTNESS_FILE = "backlight.brightness_file";
+char const*const LLP_BRIGHTNESS_FILE     = "backlight.brightness_file";
 char const*const LLP_MAX_BRIGHTNESS_FILE = "backlight.max_brightness_file";
+char const*const LLP_MAX_BRIGHTNESS      = "backlight.max_brightness";
 
 void init_globals(void)
 {
@@ -122,11 +123,18 @@ static int open_lights(const struct hw_module_t* module, char const* name, struc
     if (0 == strcmp(LIGHT_ID_BACKLIGHT, name)) {
         set_light = set_light_backlight;
         char max_b_file[PROPERTY_VALUE_MAX] = {'\0'};
-        if (property_get(LLP_MAX_BRIGHTNESS_FILE, max_b_file, NULL)) {
-            max_brightness = read_int(max_b_file);
+        if (property_get(LLP_MAX_BRIGHTNESS, max_b_file, NULL)) {
+            if (!sscanf(max_b_file, "%d", &max_brightness)) {
+                LOGE("%s system property is set to '%s', this could not be parsed as an integer!", LLP_MAX_BRIGHTNESS, max_b_file);
+                return -EINVAL;
+            }
         } else {
-            LOGE("%s system property not set", LLP_MAX_BRIGHTNESS_FILE);
-            return -EINVAL;
+            if (property_get(LLP_MAX_BRIGHTNESS_FILE, max_b_file, NULL)) {
+                max_brightness = read_int(max_b_file);
+            } else {
+                LOGE("%s system property not set", LLP_MAX_BRIGHTNESS_FILE);
+                return -EINVAL;
+            }
         }
         LOGV("Read max display brightness of %d", max_brightness);
         if (max_brightness < 1) {
