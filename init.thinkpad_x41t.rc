@@ -1,5 +1,13 @@
 on boot
     chown system system /sys/class/backlight/thinkpad_screen/brightness
+    
+    setkeycode 0x6d 115
+    setkeycode 0x6e 114
+    setkeycode 0x69 28
+    setkeycode 0x6b 1
+    setkeycode 0x68 127
+    setkeycode 0x6c 125
+    setkeycode 0x67 116
 
 service wacom-input /system/bin/wacom-input
     disabled
