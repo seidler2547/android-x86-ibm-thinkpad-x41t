@@ -110,11 +110,10 @@ static int device__poll(struct sensors_poll_device_t *device,
 			// Android imagines the device in portrait mode, but hdaps measures in landscape mode,
 			// so swap x and y axis!
 			case ABS_X:
-				data->acceleration.y = - (float) event.value * CONVERT;
+				data->acceleration.x = (float) event.value * CONVERT;
 				break;
 			case ABS_Y:
-				data->acceleration.x = - (float) event.value * CONVERT;
-				break;
+				data->acceleration.y = -(float) event.value * CONVERT;
 				break;
 			}
 		} else if (event.type == EV_SYN) {
