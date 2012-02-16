@@ -1,0 +1,33 @@
+diff --git a/linux-x86/toolchain/i686-android-linux-4.4.3/build-toolchain.sh b/linux-x86/toolchain/i686-android-linux-4.4.3/build-toolchain.sh
+index e61172a..98918e0 100755
+--- a/linux-x86/toolchain/i686-android-linux-4.4.3/build-toolchain.sh
++++ b/linux-x86/toolchain/i686-android-linux-4.4.3/build-toolchain.sh
+@@ -126,24 +126,11 @@ download_toolchain_sources ()
+     # because it removes all .info files, which breaks the ToT source
+     # build as of 2011-03-03
+     #
++    # ==> seems to work fine (2012-01-28), so do use the correct script
++
+     echo "Download toolchain patches to: $TOOLCHAIN_SRC_DIR"
+-    GIT_PREFIX=git://android.git.kernel.org/toolchain
+-    for PROJECT in build binutils gcc gdb mpfr gmp gold; do
+-        PROJECT_DIR="$TOOLCHAIN_SRC_DIR/$PROJECT"
+-        PROJECT_GIT="$GIT_PREFIX/$PROJECT.git"
+-        echo "$PROJECT: Cleaning"
+-        rm -rf $PROJECT_DIR
+-        echo "$PROJECT: Downloading sources from: $PROJECT_GIT"
+-        (git clone $PROJECT_GIT $PROJECT_DIR) > /dev/null 2>&1
+-        fail_panic "$PROJECT: Could not git clone!!"
+-        if [ -n "$GIT_DATE" ] ; then
+-            echo "$PROJECT: Switching to sources for date '$GIT_DATE'"
+-            (cd $PROJECT_DIR &&
+-             REVISION=`git rev-list -n 1 --until="$GIT_DATE" HEAD` &&
+-             run git checkout $REVISION) > /dev/null 2>&1
+-            fail_panic "$PROJECT: Could not checkout?"
+-        fi
+-    done
++
++    ndk/build/tools/download-toolchain-sources.sh "$TOOLCHAIN_SRC_DIR"
+     fail_panic "Could not download toolchain sources!"
+ }
+ 

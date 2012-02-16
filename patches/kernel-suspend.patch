@@ -1,0 +1,34 @@
+diff --git a/kernel/power/suspend.c b/kernel/power/suspend.c
+index 63774df..091ded0 100644
+--- a/kernel/power/suspend.c
++++ b/kernel/power/suspend.c
+@@ -94,7 +94,9 @@ static int suspend_prepare(void)
+ 	if (!suspend_ops || !suspend_ops->enter)
+ 		return -EPERM;
+ 
++#ifndef CONFIG_FB_EARLYSUSPEND
+ 	pm_prepare_console();
++#endif
+ 
+ 	error = pm_notifier_call_chain(PM_SUSPEND_PREPARE);
+ 	if (error)
+@@ -112,7 +114,9 @@ static int suspend_prepare(void)
+ 	usermodehelper_enable();
+  Finish:
+ 	pm_notifier_call_chain(PM_POST_SUSPEND);
++#ifndef CONFIG_FB_EARLYSUSPEND
+ 	pm_restore_console();
++#endif
+ 	return error;
+ }
+ 
+@@ -253,7 +257,9 @@ static void suspend_finish(void)
+ 	suspend_thaw_processes();
+ 	usermodehelper_enable();
+ 	pm_notifier_call_chain(PM_POST_SUSPEND);
++#ifndef CONFIG_FB_EARLYSUSPEND
+ 	pm_restore_console();
++#endif
+ }
+ 
+ /**

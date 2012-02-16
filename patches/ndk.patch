@@ -1,0 +1,15 @@
+diff --git a/build/tools/toolchain-patches/gcc/0004-Enable-x86-gcc-defaults.patch b/build/tools/toolchain-patches/gcc/0004-Enable-x86-gcc-defaults.patch
+index 792bc14..ee4e9b6 100644
+--- a/build/tools/toolchain-patches/gcc/0004-Enable-x86-gcc-defaults.patch
++++ b/build/tools/toolchain-patches/gcc/0004-Enable-x86-gcc-defaults.patch
+@@ -72,8 +72,8 @@ index f3a98c2..bc2a5d5 100644
+ +#define CC1_SPEC                                               \
+ +  LINUX_OR_ANDROID_CC (OVERRIDE_LINUX_TARGET_CC1_SPEC,                  \
+ +                       OVERRIDE_LINUX_TARGET_CC1_SPEC \
+-+                       " -march=i686 -mtune=atom" \
+-+                       " -mstackrealign -msse3 -mfpmath=sse" \
+++                       " -march=pentium-m -mmmx -msse -msse2 -mno-sse3" \
+++                       " -mstackrealign -mfpmath=sse" \
+ +                       " -m32 -fno-short-enums" \
+ +                       " " \
+ +                       ANDROID_CC1_SPEC("-fPIC"))
