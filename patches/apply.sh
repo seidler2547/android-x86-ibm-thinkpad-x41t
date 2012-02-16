@@ -12,10 +12,14 @@ MYDIR="$(readlink -f $(dirname $0))"
     cd ../ndk
     git apply "$MYDIR/ndk.patch"
     cd ..
-    prebuilt/linux-x86/toolchain/i686-android-linux-4.4.3/build-toolchain.sh
+    prebuilt/linux-x86/toolchain/i686-android-linux-4.4.3/build-toolchain.sh &
 }
 
 # apply kernel patches
 cd kernel
 git status kernel/power/suspend.c | tail -1 | grep -q 'nothing to commit' && git apply "$MYDIR/kernel-suspend.patch"
 cd ..
+
+[ -e buildspec.mk ] || cp "$MYDIR/buildspec.mk" buildspec.mk
+
+wait
