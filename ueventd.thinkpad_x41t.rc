@@ -1,0 +1,2 @@
+# rfkill
+/dev/rfkill               0660   system     wifi
