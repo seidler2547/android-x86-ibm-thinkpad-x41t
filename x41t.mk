@@ -12,6 +12,11 @@ PRODUCT_MANUFACTURER := ibm
 
 DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlays
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/ueventd.$(TARGET_PRODUCT).rc:root/ueventd.$(TARGET_PRODUCT).rc \
+    $(LOCAL_PATH)/wacom-input.idc:system/usr/idc/wacom-input.idc \
+    $(LOCAL_PATH)/AT_Translated_Set_2_keyboard.idc:system/usr/idc/AT_Translated_Set_2_keyboard.idc \
+
 #PRODUCT_COPY_FILES += \
 #    $(LOCAL_PATH)/system/etc/permissions/features.xml:system/etc/permissions/features.xml \
 #    $(LOCAL_PATH)/system/etc/permissions/com.google.android.media.effects.xml:system/etc/permissions/com.google.android.media.effects.xml \
