@@ -15,6 +15,9 @@ BOARD_USES_KBDSENSOR := false
 BOARD_USES_HDAPS_ACCEL := true
 #TARGET_CPU_SMP := false
 BOARD_KERNEL_CMDLINE := root=/dev/ram0 quiet androidboot.hardware=$(TARGET_PRODUCT) video=1024x768 i915.lvds_downclock=1 i915.powersave=1 usbcore.autosuspend=2
+WPA_SUPPLICANT_VERSION := VER_0_6_X
+BOARD_WPA_SUPPLICANT_DRIVER := AWEXT
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := 
 
 include $(GENERIC_X86_CONFIG_MK)
 

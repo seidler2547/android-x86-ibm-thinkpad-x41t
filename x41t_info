@@ -4,5 +4,8 @@ detect_hardware()
 {
 	modprobe hdaps || true
 	modprobe mmc_block || true
+	modprobe lib80211_crypt_wep || true
+	modprobe lib80211_crypt_ccmp || true
+	modprobe lib80211_crypt_tkip || true
 	return 1
 }
