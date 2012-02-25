@@ -85,7 +85,7 @@ int main(int argc, char** argv) {
 	WACOMMODEL model = { 0 };
 	unsigned char uchBuf[64];
 	int nLength = 0;
-	int minPress = 40;
+	int minPress = 20;
 
 	// parse arguments
 	while (*argv) {
