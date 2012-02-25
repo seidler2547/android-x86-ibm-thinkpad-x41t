@@ -1,0 +1,12 @@
+diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
+index 26c5b11..fa34792 100644
+--- a/drivers/platform/x86/thinkpad_acpi.c
++++ b/drivers/platform/x86/thinkpad_acpi.c
+@@ -3769,6 +3769,7 @@ static void hotkey_resume(void)
+ 		       "firmware interface\n");
+ 
+ 	tpacpi_send_radiosw_update();
++	tpacpi_input_send_tabletsw();
+ 	hotkey_tablet_mode_notify_change();
+ 	hotkey_wakeup_reason_notify_change();
+ 	hotkey_wakeup_hotunplug_complete_notify_change();
