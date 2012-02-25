@@ -8,15 +8,16 @@ on boot
     setkeycode 0x68 127
     setkeycode 0x6c 172
     setkeycode 0x67 116
-    
+
     setprop system_init.startsurfaceflinger 0
 
 service wacom-input /system/bin/wacom-input
+    class late_start
     disabled
 
-#service amixer-master /system/bin/alsa_amixer set Master 100 on
-#    oneshot
-#    disabled
+service tablet-mode /system/bin/tablet-mode
+    class late_start
+    disabled
 
 service amixer-pcm /system/bin/alsa_amixer set PCM 100 on
     oneshot
@@ -24,7 +25,7 @@ service amixer-pcm /system/bin/alsa_amixer set PCM 100 on
 
 on property:dev.bootcomplete=1
     start wacom-input
-    start amixer-master
+    start tablet-mode
     start amixer-pcm
 
     chmod 660 /sys/class/rfkill/rfkill0/state

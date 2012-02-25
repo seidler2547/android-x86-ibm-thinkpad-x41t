@@ -19,4 +19,5 @@
 <devices>
     <device name="Power Button" />
     <device name="Lid Switch" />
+    <device name="ThinkPad Extra Buttons" />
 </devices>
