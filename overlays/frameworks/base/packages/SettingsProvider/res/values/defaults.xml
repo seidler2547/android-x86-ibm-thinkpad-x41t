@@ -17,5 +17,8 @@
  */
 -->
 <resources>
+    <bool name="def_sound_effects_enabled">false</bool>
     <bool name="def_install_non_market_apps">true</bool>
+    <bool name="def_wifi_on">true</bool>
+    <integer name="def_screen_off_timeout">60000</integer>
 </resources>
