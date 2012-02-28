@@ -18,6 +18,7 @@ service wacom-input /system/bin/wacom-input
 service tablet-mode /system/bin/tablet-mode
     class late_start
     disabled
+    oneshot
 
 service amixer-pcm /system/bin/alsa_amixer set PCM 100 on
     oneshot
