@@ -12,13 +12,14 @@ on boot
     setprop system_init.startsurfaceflinger 0
 
 service wacom-input /system/bin/wacom-input
-    class late_start
     disabled
 
 service tablet-mode /system/bin/tablet-mode
-    class late_start
     disabled
     oneshot
+
+on property:init.svc.zygote=running
+    start tablet-mode
 
 service amixer-pcm /system/bin/alsa_amixer set PCM 100 on
     oneshot
@@ -26,7 +27,6 @@ service amixer-pcm /system/bin/alsa_amixer set PCM 100 on
 
 on property:dev.bootcomplete=1
     start wacom-input
-    start tablet-mode
     start amixer-pcm
 
     chmod 660 /sys/class/rfkill/rfkill0/state
