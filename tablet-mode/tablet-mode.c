@@ -84,7 +84,7 @@ int main(void)
 		return -1;
 	}
 
-	sleep(15); //wait some time or otherwise EventHub might not pick up our events correctly!?
+	sleep(10); //wait some time or otherwise EventHub might not pick up our events correctly!?
 
 	int ufd = open("/dev/uinput", O_WRONLY | O_NDELAY);
 	if (ufd >= 0) {

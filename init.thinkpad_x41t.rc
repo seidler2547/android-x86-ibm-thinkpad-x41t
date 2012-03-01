@@ -18,7 +18,7 @@ service tablet-mode /system/bin/tablet-mode
     disabled
     oneshot
 
-on property:init.svc.zygote=running
+on property:sys.boot_completed=1
     start tablet-mode
 
 service amixer-pcm /system/bin/alsa_amixer set PCM 100 on
@@ -27,6 +27,7 @@ service amixer-pcm /system/bin/alsa_amixer set PCM 100 on
 
 on property:dev.bootcomplete=1
     start wacom-input
+#    start tablet-mode
     start amixer-pcm
 
     chmod 660 /sys/class/rfkill/rfkill0/state
